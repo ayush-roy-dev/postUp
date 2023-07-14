@@ -1,6 +1,6 @@
 # postUp
 
-Most of the logic in this project including the database design and like, comment functionality is mine. Not sure if it is the standard way to do it, but it gets the job done. User and Post related CRUD functionality is in place.
+Most of the logic in this project including the database design and like, follow, comment functionality is mine. Not sure if it is the standard way to do it, but it gets the job done. User and Post related CRUD functionality is in place.
 
 ## Notable features
 
