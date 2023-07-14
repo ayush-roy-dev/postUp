@@ -5,6 +5,11 @@ const PostSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    title: {
+        type: String,
+        required: [true, "Please provide a post title"],
+        maxlength: 50
+    },
     caption: {
         type: String,
         required: [true, "Please provide a post title"],

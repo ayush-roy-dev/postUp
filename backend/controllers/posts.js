@@ -10,11 +10,21 @@ const getAllPosts = async (req, res) => {
 const getPost = async (req, res) => {
     const post = await Post.findById(req.params.id)
     if (!post) throw new NotFoundError(`No post by id: ${req.params.id}`);
-    if (req.query.like) {
+
+    // like unlike functionality
+    if (req.query.action === "like") {
         const alreadyLiked = post.likes.includes(req.user.userId);
         if (!alreadyLiked) {
             post.likes.push(req.user.userId)
             post.nbLikes += 1
+            await post.save()
+        }
+    }
+    else if (req.query.action === "unlike") {
+        const alreadyLiked = post.likes.includes(req.user.userId);
+        if (alreadyLiked) {
+            post.likes = post.likes.filter((e) => {return !(e === req.user.userId)})
+            post.nbLikes -= 1
             await post.save()
         }
     }
