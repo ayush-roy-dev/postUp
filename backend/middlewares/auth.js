@@ -11,7 +11,7 @@ const authenticate = async (req, res, next) => {
         const payload = jwt.verify(token, process.env.JWT_SECRET)
         const user = await User.findOne({ _id: payload.userId }).select("-password")
         if (!user) throw new UnauthenticatedError("Authorization is required to access this route")
-        req.user = {userId: user._id, username: user.username, following: user.following}
+        req.user = {userId: user._id, username: user.username, following: user.following, emailIsVerified: user.emailIsVerified}
         next()
     } catch (error) {
         throw new UnauthenticatedError("Authorization is required to access this route")

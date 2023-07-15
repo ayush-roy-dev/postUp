@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        maxlength: 50,
+        maxlength: 150,
         required: [true, "Please provide a password"]
     },
     followers: {

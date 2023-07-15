@@ -15,10 +15,18 @@ const ComentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Coment',
     },
+    isReply: {
+        type: Boolean,
+        default: false
+    },
     value: {
         type: String,
         required: [true, "A coment cannot be empty"],
         maxlength: 150,
+    },
+    nbLikes: {
+        type: Number,
+        default: 0,
     }
 }, {timestamps: true})
 
