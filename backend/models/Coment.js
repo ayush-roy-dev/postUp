@@ -23,6 +23,11 @@ const ComentSchema = new mongoose.Schema({
         type: String,
         required: [true, "A coment cannot be empty"],
         maxlength: 150,
+        trim: true
+    },
+    likes: {
+        type: Array,
+        default: []
     },
     nbLikes: {
         type: Number,

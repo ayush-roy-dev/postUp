@@ -16,6 +16,7 @@ app.use([express.json(), express.urlencoded()]);
 // routes
 app.use('/api/v1/user', authRouter)
 app.use('/api/v1/posts', postsRouter)
+// app.use('/api/v1/posts/:postId/coments', comentsRouter)
 
 // error handlers
 app.use(notFoundMiddleware)

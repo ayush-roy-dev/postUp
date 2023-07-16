@@ -8,8 +8,8 @@ const getAllPosts = async (req, res) => {
 }
 
 const getPost = async (req, res) => {
-    const post = await Post.findById(req.params.id)
-    if (!post) throw new NotFoundError(`No post by id: ${req.params.id}`);
+    const post = await Post.findById(req.params.postId)
+    if (!post) throw new NotFoundError(`No post by id: ${req.params.postId}`);
 
     // like unlike functionality
     if (req.query.action === "like") {
@@ -40,14 +40,14 @@ const createPost = async (req, res) => {
 
 const editPost = async (req, res) => {
     const { caption, title } = req.body;
-    const post = await Post.findOneAndUpdate({_id: req.params.id, createdBy: req.user.userId}, { caption, title }, {runValidators: true})
-    if (!post) throw new NotFoundError(`No post by id: ${req.params.id}`);
+    const post = await Post.findOneAndUpdate({_id: req.params.postId, createdBy: req.user.userId}, { caption, title }, {runValidators: true})
+    if (!post) throw new NotFoundError(`No post by id: ${req.params.postId}`);
     res.status(StatusCodes.OK).json({post})
 }
 
 const deletePost = async (req, res) => {
-    const post = await Post.findOneAndDelete({_id: req.params.id, createdBy: req.user.userId})
-    if (!post) throw new NotFoundError(`No post by id: ${req.params.id}`);
+    const post = await Post.findOneAndDelete({_id: req.params.postId, createdBy: req.user.userId})
+    if (!post) throw new NotFoundError(`No post by id: ${req.params.postId}`);
     res.status(StatusCodes.OK).json({msg: "Post deleted succesfully"})
 }
 
